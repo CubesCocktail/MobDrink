@@ -1,0 +1,103 @@
+messages:
+  command:
+    mob-not-found: "&cMob not found"
+    mob-incorrect-usage: "&cIncorrect usage. Type /sm help to get help."
+gui:
+  mob:
+    type:
+      - "&7&oThe type of the mob."
+    actuators:
+      - "&7&oThe list of actuators associated to the"
+      - "&7&omob."
+    general-options:
+      - "&7&oGeneral options of this mob."
+      - "&7&oIf the mob is normally spawned,"
+      - "&7&olike with /sm spawn command, the"
+      - "&7&osource and the target of all the"
+      - "&7&oplaceholders are the spawned entity."
+    skill:
+      groups:
+        - "&7&oThe list of action groups to execute when"
+        - "&7&othe skill is executed."
+      triggered:
+        description:
+          - "&7&oSet a skill that is executed when a trigger"
+          - "&7&ois triggered by the mob."
+        cooldown:
+          - "&7&oThe cooldown in ticks between possible skill"
+          - "&7&oexecutions."
+        trigger:
+          - "&7&oThe trigger to listen to."
+      timed:
+        description:
+          - "&7&oSet a skill that is executed regurarly on"
+          - "&7&oa timer by the mob."
+        timer:
+          - "&7&oThe ticks between skill executions."
+      spawn:
+        description:
+          - "&7&oSet a skill that is executed when the mob is"
+          - "&7&ospawned."
+  general-options:
+    attribute-options:
+      default-value:
+        - "&7&oIf -1 default values are applied."
+      max-health:
+        - "&7&oThe max health of the mob."
+      movement-speed:
+        - "&7&oThe movement speed of the mob."
+      armor:
+        - "&7&oThe armor of the mob."
+      damage:
+        - "&7&oThe damage of the mob."
+    behavior-options:
+      target-selectors:
+        - "&7&oList of target selectors."
+        - "&7&oIf you want to override default"
+        - "&7&omob behaviour use a ClearTargetSelector"
+        - "&7&oas the first selector in the list."
+      goal-selectors:
+        - "&7&oList of goal selectors."
+        - "&7&oIf you want to override default"
+        - "&7&omob behaviour use a ClearGoalSelector"
+        - "&7&oas the first selector in the list."
+    equipment-options:
+      equipments:
+        - "&7&oThe set of equipment to assign to a mob."
+      allow:
+        - "&7&oWhether default possible equipments should"
+        - "&7&obe allowed or not."
+      equipment:
+        slot:
+          - "&7&oThe slot where to put the equipment."
+        item:
+          - "&7&oThe item to spawn."
+        chance:
+          - "&7&oThe chance to drop the equipment on death."
+    attributes:
+      - "&7&oThe attribute options of the mob."
+    name:
+      - "&7&oThe custom name of the mob."
+      - "&7&oIf set to 'null' default one is used."
+    name-visible:
+      - "&7&oWhether the name is visible."
+    behavior:
+      - "&7&oThe behavior options of the mob."
+    loot:
+      - "&7&oThe drops of the mob."
+    equipment:
+      - "&7&oThe equipment of the mob."
+  spawner:
+    mob:
+      - "&7&oThe SupremeMob to spawn."
+    location:
+      - "&7&oThe location of the spawner."
+    range:
+      - "&7&oThe maximum spawn range."
+    cooldown:
+      - "&7&oThe cooldown between two entity spawns."
+    max-entities:
+      - "&7&oThe max number of entities coming from this"
+      - "&7&ospawner that can exist simultaneously."
+    level:
+      - "&7&oThe level of the SupremeMob."

@@ -1,0 +1,3 @@
+name: MobDrink
+version: ${version}
+main: com.github.zamponimarco.mobdrink.MobDrink

@@ -5,7 +5,7 @@
 
     <groupId>com.github.zamponimarco</groupId>
     <artifactId>mobdrink</artifactId>
-    <version>0.1</version>
+    <version>transition</version>
     <modules>
         <module>mobdrink-core</module>
         <module>mobdrink-dist</module>

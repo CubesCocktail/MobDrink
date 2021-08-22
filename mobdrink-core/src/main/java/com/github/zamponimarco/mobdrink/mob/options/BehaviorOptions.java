@@ -3,7 +3,7 @@ package com.github.zamponimarco.mobdrink.mob.options;
 import com.github.zamponimarco.cubescocktail.action.source.ActionSource;
 import com.github.zamponimarco.cubescocktail.action.targeter.ActionTarget;
 import com.github.zamponimarco.cubescocktail.ai.goal.GoalSelector;
-import com.github.zamponimarco.cubescocktail.ai.target.TargetSelector;
+import com.github.zamponimarco.cubescocktail.ai.trgt.TargetSelector;
 import com.github.zamponimarco.cubescocktail.libs.annotation.Serializable;
 import com.github.zamponimarco.cubescocktail.libs.model.Model;
 import com.google.common.collect.Lists;

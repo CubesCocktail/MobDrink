@@ -11,7 +11,7 @@ import com.github.zamponimarco.cubescocktail.libs.annotation.Enumerable;
 import com.github.zamponimarco.cubescocktail.libs.annotation.Serializable;
 import com.github.zamponimarco.cubescocktail.libs.model.ModelPath;
 import com.github.zamponimarco.cubescocktail.source.Source;
-import com.github.zamponimarco.cubescocktail.target.Target;
+import com.github.zamponimarco.cubescocktail.trgt.Target;
 import com.github.zamponimarco.cubescocktail.trigger.HitEntityTrigger;
 import com.github.zamponimarco.cubescocktail.trigger.Trigger;
 import com.github.zamponimarco.cubescocktail.trigger.TriggerListener;

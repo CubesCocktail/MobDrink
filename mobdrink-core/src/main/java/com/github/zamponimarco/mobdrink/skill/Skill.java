@@ -1,5 +1,6 @@
 package com.github.zamponimarco.mobdrink.skill;
 
+import com.github.zamponimarco.cubescocktail.action.args.ActionArgument;
 import com.github.zamponimarco.cubescocktail.action.group.ActionGroup;
 import com.github.zamponimarco.cubescocktail.key.Key;
 import com.github.zamponimarco.cubescocktail.key.Keyed;
@@ -46,8 +47,8 @@ public abstract class Skill implements Model, Cloneable, Keyed {
         this.groups = (List<ActionGroup>) map.getOrDefault("groups", Lists.newArrayList());
     }
 
-    public void executeActions(Map<String, Object> map) {
-        groups.forEach(group -> group.executeGroup(map));
+    public void executeActions(ActionArgument args) {
+        groups.forEach(group -> group.executeGroup(args));
     }
 
     @Override

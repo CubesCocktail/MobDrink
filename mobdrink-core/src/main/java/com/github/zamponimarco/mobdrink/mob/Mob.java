@@ -1,6 +1,8 @@
 package com.github.zamponimarco.mobdrink.mob;
 
 import com.github.zamponimarco.cubescocktail.CubesCocktail;
+import com.github.zamponimarco.cubescocktail.action.args.ActionArgument;
+import com.github.zamponimarco.cubescocktail.action.args.ActionArgumentKey;
 import com.github.zamponimarco.cubescocktail.action.source.ActionSource;
 import com.github.zamponimarco.cubescocktail.action.source.EntitySource;
 import com.github.zamponimarco.cubescocktail.action.targeter.EntityTarget;
@@ -168,11 +170,11 @@ public class Mob extends NamedModel {
         }
         EntityTarget target = new EntityTarget(e);
         generalOptions.buildOptions(e, source, target);
-        Map<String, Object> map = new HashMap<>();
 
-        map.put("caster", source.getCaster());
-        map.put("spawned", e);
-        skills.stream().filter(skill -> skill instanceof SpawnSkill).forEach(skill -> skill.executeActions(map));
+        ActionArgument args = new ActionArgument();
+        args.setArgument(ActionArgumentKey.CASTER, source.getCaster());
+        args.setArgument(ActionArgumentKey.SPAWNED, e);
+        skills.stream().filter(skill -> skill instanceof SpawnSkill).forEach(skill -> skill.executeActions(args));
         skills.stream().filter(skill -> skill instanceof TimedSkill).forEach(skill -> CubesCocktail.getInstance().
                 getTimerManager().addNewTimers(e, (TimedSkill) skill));
         return e;

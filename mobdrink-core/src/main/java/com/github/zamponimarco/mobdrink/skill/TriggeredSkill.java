@@ -1,6 +1,8 @@
 package com.github.zamponimarco.mobdrink.skill;
 
 import com.github.zamponimarco.cubescocktail.CubesCocktail;
+import com.github.zamponimarco.cubescocktail.action.args.ActionArgument;
+import com.github.zamponimarco.cubescocktail.action.args.ActionArgumentKey;
 import com.github.zamponimarco.cubescocktail.action.group.ActionGroup;
 import com.github.zamponimarco.cubescocktail.annotation.PossibleSources;
 import com.github.zamponimarco.cubescocktail.annotation.PossibleTargets;
@@ -33,7 +35,6 @@ public class TriggeredSkill extends Skill implements TriggerListener, Cooldownab
 
     private static final String TRIGGER_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODY1Mjg2ZTNlNmZhMDBlNGE2MGJiODk2NzViOWFhNzVkNmM5Y2RkMWVjODQwZDFiY2MyOTZiNzFjOTJmOWU0MyJ9fX0=";
     private static final String COOLDOWN_HEAD = "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNmZlOGNmZjc1ZjdkNDMzMjYwYWYxZWNiMmY3NzNiNGJjMzgxZDk1MWRlNGUyZWI2NjE0MjM3NzlhNTkwZTcyYiJ9fX0=";
-
 
     @Serializable(headTexture = TRIGGER_HEAD, description = "gui.mob.skill.triggered.trigger")
     private Trigger trigger;
@@ -90,17 +91,17 @@ public class TriggeredSkill extends Skill implements TriggerListener, Cooldownab
     }
 
     @Override
-    public void onTrigger(Map<String, Object> map) {
-        LivingEntity caster = (LivingEntity) map.get("caster");
+    public void onTrigger(ActionArgument args) {
+        LivingEntity caster = args.getArgument(ActionArgumentKey.CASTER);
 
         Mob mob = Mob.fromEntity(caster);
 
         if (mob != null && mob.getSkills().contains(this)) {
-            executeTriggers(map, caster, mob);
+            executeTriggers(args, caster);
         }
     }
 
-    private void executeTriggers(Map<String, Object> map, LivingEntity caster, Mob mob) {
+    private void executeTriggers(ActionArgument args, LivingEntity caster) {
         if (cooldown > 0) {
             if (CubesCocktail.getInstance().getCooldownManager().getCooldown(caster, getKey()) > 0) {
                 return;
@@ -110,7 +111,7 @@ public class TriggeredSkill extends Skill implements TriggerListener, Cooldownab
             }
         }
 
-        executeActions(map);
+        executeActions(args);
     }
 
     @Override

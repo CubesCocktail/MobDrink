@@ -9,6 +9,7 @@
     <modules>
         <module>mobdrink-core</module>
         <module>mobdrink-dist</module>
+        <module>mobdrink-api</module>
     </modules>
     <packaging>pom</packaging>
     <name>MobDrink</name>

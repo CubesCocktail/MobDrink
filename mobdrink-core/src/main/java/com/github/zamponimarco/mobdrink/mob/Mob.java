@@ -75,6 +75,7 @@ public class Mob extends NamedModel {
 
     public Mob(Map<String, Object> map) {
         super(map);
+        //this.id = UUID.fromString((String) map.get("id"));
         this.id = UUID.fromString((String) map.getOrDefault("id", UUID.randomUUID().toString()));
         this.type = EntityType.valueOf((String) map.get("type"));
         this.skills = (List<Skill>) map.getOrDefault("skills", Lists.newArrayList());

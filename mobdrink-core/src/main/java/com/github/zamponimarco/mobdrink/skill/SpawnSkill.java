@@ -58,7 +58,7 @@ public class SpawnSkill extends Skill {
     @Override
     public ItemStack getGUIItem() {
         return ItemUtils.getNamedItem(
-                Libs.getWrapper().skullFromValue(SPAWN_HEAD),
+                Libs.getVersionWrapper().skullFromValue(SPAWN_HEAD),
                 MessageUtils.color("&6&lSpawn skill"),
                 Lists.newArrayList());
     }

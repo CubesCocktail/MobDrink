@@ -14,7 +14,6 @@ import com.github.zamponimarco.cubescocktail.value.NumericValue;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import lombok.EqualsAndHashCode;
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
@@ -115,38 +114,38 @@ public class EquipmentOptions implements Model {
 
         @Override
         public ItemStack getGUIItem() {
-            return ItemUtils.getNamedItem(item.getWrapped().clone(), MessageUtils.color("&6&lSlot: &c" + WordUtils.capitalizeFully(
-                    slot.name())), Libs.getLocale().getList("gui.additional-tooltips.delete"));
+            return ItemUtils.getNamedItem(item.getWrapped().clone(), MessageUtils.color("&6&lSlot: &c" +
+                    MessageUtils.capitalize(slot.name())), Libs.getLocale().getList("gui.additional-tooltips.delete"));
         }
 
         protected void applyEquipment(EntityEquipment equipment, ActionTarget target, ActionSource source) {
             float dropChance = this.dropChance.getRealValue(target, source).floatValue();
             ItemStack item = this.item.getWrapped().clone();
             switch (slot) {
-                case HEAD:
+                case HEAD -> {
                     equipment.setHelmet(item);
                     equipment.setHelmetDropChance(dropChance);
-                    break;
-                case CHEST:
+                }
+                case CHEST -> {
                     equipment.setChestplate(item);
                     equipment.setChestplateDropChance(dropChance);
-                    break;
-                case LEGS:
+                }
+                case LEGS -> {
                     equipment.setLeggings(item);
                     equipment.setLeggingsDropChance(dropChance);
-                    break;
-                case FEET:
+                }
+                case FEET -> {
                     equipment.setBoots(item);
                     equipment.setBootsDropChance(dropChance);
-                    break;
-                case HAND:
+                }
+                case HAND -> {
                     equipment.setItemInMainHand(item);
                     equipment.setItemInMainHandDropChance(dropChance);
-                    break;
-                case OFF_HAND:
+                }
+                case OFF_HAND -> {
                     equipment.setItemInOffHand(item);
                     equipment.setItemInOffHandDropChance(dropChance);
-                    break;
+                }
             }
         }
 

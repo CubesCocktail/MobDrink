@@ -2,9 +2,9 @@ package com.github.zamponimarco.mobdrink.command;
 
 import com.github.zamponimarco.cubescocktail.libs.command.AbstractCommand;
 import com.github.zamponimarco.cubescocktail.libs.core.Libs;
+import com.github.zamponimarco.cubescocktail.libs.util.MessageUtils;
 import com.github.zamponimarco.mobdrink.MobDrink;
 import com.github.zamponimarco.mobdrink.mob.Mob;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -35,7 +35,7 @@ public class MobSpawnCommand extends AbstractCommand {
 
         int level = 1;
 
-        if (strings.length > 1 && StringUtils.isNumeric(strings[1])) {
+        if (strings.length > 1 && strings[1].matches("\\d+")) {
             level = Integer.parseInt(strings[1]);
         }
 

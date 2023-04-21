@@ -13,15 +13,11 @@ import com.github.zamponimarco.cubescocktail.libs.model.ModelPath;
 import com.github.zamponimarco.cubescocktail.libs.util.ItemUtils;
 import com.github.zamponimarco.cubescocktail.libs.util.MapperUtils;
 import com.github.zamponimarco.cubescocktail.libs.util.MessageUtils;
-import com.github.zamponimarco.cubescocktail.timer.Timerable;
-import com.github.zamponimarco.cubescocktail.trigger.EntitySpawnTrigger;
-import com.github.zamponimarco.cubescocktail.trigger.Trigger;
 import com.github.zamponimarco.mobdrink.MobDrink;
 import com.github.zamponimarco.mobdrink.mob.options.GeneralOptions;
 import com.github.zamponimarco.mobdrink.skill.Skill;
 import com.github.zamponimarco.mobdrink.skill.SpawnSkill;
 import com.github.zamponimarco.mobdrink.skill.TimedSkill;
-import com.github.zamponimarco.mobdrink.skill.TriggeredSkill;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -32,10 +28,12 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.metadata.LazyMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -80,7 +78,6 @@ public class Mob extends NamedModel {
         this.type = EntityType.valueOf((String) map.get("type"));
         this.skills = (List<Skill>) map.getOrDefault("skills", Lists.newArrayList());
         this.generalOptions = (GeneralOptions) map.getOrDefault("generalOptions", new GeneralOptions());
-        legacyTransition(map);
         counter++;
     }
 
@@ -129,22 +126,6 @@ public class Mob extends NamedModel {
 
         return e.getPersistentDataContainer().getOrDefault(new NamespacedKey(CubesCocktail.getInstance(), "level"),
                 PersistentDataType.INTEGER, 1);
-    }
-
-    @Deprecated
-    private void legacyTransition(Map<String, Object> map) {
-        List<Trigger> oldSkillSet = (List<Trigger>) map.get("actuators");
-        if (oldSkillSet != null && !oldSkillSet.isEmpty()) {
-            oldSkillSet.forEach(trigger -> {
-                Skill skill;
-                if (trigger instanceof EntitySpawnTrigger) {
-                    skill = new SpawnSkill(id, UUID.randomUUID(), trigger.getGroups());
-                } else {
-                    skill = new TriggeredSkill(id, UUID.randomUUID(), trigger.getGroups(), trigger, trigger.getCooldown());
-                }
-                this.skills.add(skill);
-            });
-        }
     }
 
     @Override

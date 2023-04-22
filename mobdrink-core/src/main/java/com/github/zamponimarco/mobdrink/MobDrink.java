@@ -92,8 +92,8 @@ public class MobDrink extends Addon {
     }
 
     private void setUpData() {
-        this.mobManager = new MobManager(Mob.class, "comp", CubesCocktail.getInstance());
-        this.spawnerManager = new SpawnerManager(Spawner.class, "comp", CubesCocktail.getInstance());
+        this.mobManager = new MobManager(Mob.class, "comp_yaml", CubesCocktail.getInstance());
+        this.spawnerManager = new SpawnerManager(Spawner.class, "comp_yaml", CubesCocktail.getInstance());
     }
 
     private void setUpListener() {
@@ -108,7 +108,7 @@ public class MobDrink extends Addon {
         ex.registerCommand("list", new MobListCommand());
         ex.registerCommand("spawners", new SpawnerListCommand());
         ex.registerCommand("spawn", new MobSpawnCommand());
-        CubesCocktail.getInstance().getCommandExecutor().registerCommand("mobs", ex);
+        CubesCocktail.getInstance().getCommandExecutor().registerCommand("mob", ex);
     }
 
     @Override

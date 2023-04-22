@@ -7,8 +7,10 @@ import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 @Getter
 public class MobManager extends ModelManager<Mob> {
@@ -16,8 +18,16 @@ public class MobManager extends ModelManager<Mob> {
     private final List<Mob> mobs;
 
     public MobManager(Class<Mob> classObject, String databaseType, JavaPlugin plugin) {
-        super(classObject, databaseType, plugin, ImmutableMap.of("addon", MobDrink.getInstance()));
-        this.mobs = database.loadObjects();
+        super(classObject, databaseType, plugin, ImmutableMap.of("name", "mob",
+                "fileSupplier", (Supplier<File>) () -> {
+                    String fileName = "mob.yml";
+                    File dataFile = new File(MobDrink.getInstance().getDataFolder(), fileName);
+                    if (!dataFile.exists()) {
+                        MobDrink.getInstance().saveResource(fileName);
+                    }
+                    return dataFile;
+                }));
+        this.mobs = fetchModels();
     }
 
     public Mob getByName(String name) {

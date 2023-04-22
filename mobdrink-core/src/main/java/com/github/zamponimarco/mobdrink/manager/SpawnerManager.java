@@ -1,6 +1,5 @@
 package com.github.zamponimarco.mobdrink.manager;
 
-import com.github.zamponimarco.cubescocktail.database.CompressedYamlDatabase;
 import com.github.zamponimarco.cubescocktail.libs.model.ModelManager;
 import com.github.zamponimarco.mobdrink.MobDrink;
 import com.github.zamponimarco.mobdrink.spawner.Spawner;
@@ -12,7 +11,9 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.List;
+import java.util.function.Supplier;
 
 @Getter
 public class SpawnerManager extends ModelManager<Spawner> implements Listener {
@@ -20,8 +21,16 @@ public class SpawnerManager extends ModelManager<Spawner> implements Listener {
     private final List<Spawner> spawners;
 
     public SpawnerManager(Class<Spawner> classObject, String databaseType, JavaPlugin plugin) {
-        super(classObject, databaseType, plugin, ImmutableMap.of("addon", MobDrink.getInstance()));
-        this.spawners = database.loadObjects();
+        super(classObject, databaseType, plugin, ImmutableMap.of("name", "spawner",
+                "fileSupplier", (Supplier<File>) () -> {
+                    String fileName = "spawner.yml";
+                    File dataFile = new File(MobDrink.getInstance().getDataFolder(), fileName);
+                    if (!dataFile.exists()) {
+                        MobDrink.getInstance().saveResource(fileName);
+                    }
+                    return dataFile;
+                }));
+        this.spawners = fetchModels();
         this.spawners.forEach(Spawner::startSpawnTask);
     }
 

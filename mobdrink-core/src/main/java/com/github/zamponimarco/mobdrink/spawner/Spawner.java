@@ -1,10 +1,10 @@
 package com.github.zamponimarco.mobdrink.spawner;
 
 import com.github.zamponimarco.cubescocktail.CubesCocktail;
-import com.github.zamponimarco.cubescocktail.database.NamedModel;
 import com.github.zamponimarco.cubescocktail.libs.annotation.Serializable;
 import com.github.zamponimarco.cubescocktail.libs.core.Libs;
 import com.github.zamponimarco.cubescocktail.libs.model.ModelPath;
+import com.github.zamponimarco.cubescocktail.libs.model.NamedModel;
 import com.github.zamponimarco.cubescocktail.libs.model.wrapper.LocationWrapper;
 import com.github.zamponimarco.cubescocktail.libs.util.ItemUtils;
 import com.github.zamponimarco.cubescocktail.libs.util.MessageUtils;

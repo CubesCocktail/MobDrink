@@ -69,8 +69,10 @@ public class MobDrink extends Addon {
     }
 
     @Override
-    public void renameFunction(String s, String s1) {
-
+    public void renameFunction(String oldName, String newName) {
+        mobManager.getMobs().forEach(mob -> mob.getSkills().forEach(skill ->
+                skill.getGroups().forEach(group -> group.getActions().forEach(action ->
+                        action.changeSkillName(oldName, newName)))));
     }
 
     @Override
